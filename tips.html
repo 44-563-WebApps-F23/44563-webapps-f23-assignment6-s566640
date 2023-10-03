@@ -38,7 +38,7 @@
 function tips() {
         const base_Amount = parseFloat(document.getElementById('form1_baseAmount').value);
         const tip_Percent = parseFloat(document.getElementById('form1_tipPercent').value);
-
+            let myOutput="";
             let toShow= "";
 
             for (let i = 0; i < 5; i++) {
@@ -46,8 +46,9 @@ function tips() {
                 const calculatedTip = (base_Amount * tipLevel) / 100;
                 toShow += `${tipLevel}% is ${calculatedTip.toFixed(1)}; `;
             }
+            myOutput = `Tips are: ${toShow}`;
 
-            document.getElementById('result').textContent = `Tips are: ${toShow}`;
+            document.getElementById('result').textContent = myOutput;
         }
 
     
