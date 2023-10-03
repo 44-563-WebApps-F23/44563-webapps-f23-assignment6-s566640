@@ -18,7 +18,7 @@
 
 <button onclick="tips()">Show tip</button>
 
-<p id="result">Please click on "show tip" to show tip amount</p>
+<p id="result"></p>
 
 <form>
     <input type="radio" id="sum" name="operation" value="sum" onclick="chooseOp()">
@@ -32,7 +32,7 @@
 </form>
 
   <p id="operation_Output"></p>
-  
+
 <script> 
 
 function tips() {
@@ -46,7 +46,6 @@ function tips() {
                 const calculatedTip = (base_Amount * tipLevel) / 100;
                 toShow += `${tipLevel}% is ${calculatedTip.toFixed(1)}; `;
             }
-            // const tip_Amount = (base_Amount * tip_Percent) / 100;
 
             document.getElementById('result').textContent = `Tips are: ${toShow}`;
         }
@@ -56,20 +55,20 @@ function chooseOp() {
         
         const operation = document.querySelector('input[name="operation"]:checked').value;
         
-        const base1 = parseFloat(document.getElementById('form1_baseAmount').value);
-        const tip1 = parseFloat(document.getElementById('form1_tipPercent').value);
+        const baseIn = parseFloat(document.getElementById('form1_baseAmount').value);
+        const tipIn = parseFloat(document.getElementById('form1_tipPercent').value);
         
         let OpRes;
 
         switch (operation) {
 		        case "sum":
-                    OpRes = `Sum of ${base1} and ${tip1} is ${base1 + tip1}`;
+                    OpRes = `Sum of ${baseIn} and ${tipIn} is ${baseIn + tipIn}`;
                     break;
                 case "difference":
-                OpRes = `Difference between ${base1} and ${tip1} is ${base1 - tip1}`;
+                OpRes = `Difference between ${baseIn} and ${tipIn} is ${baseIn - tipIn}`;
                     break;
                 case "product":
-                OpRes = `Product of ${base1} and ${tip1} is ${base1 * tip1}`;
+                OpRes = `Product of ${baseIn} and ${tipIn} is ${baseIn * tipIn}`;
                     break;
                 default:
                 OpRes = "Please Click on Sum or Difference or Multiplication";
