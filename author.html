@@ -3,25 +3,30 @@
 
 <head>
     <title>Author</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
 <body>
     <h2>Author entry Rajya Lakshmi Ganganaboina</h2>
-
+<br>
     <form>
         <label for="secretAuthor">The hidden author name:</label>
         <input type="password" id="secretAuthor" value="Dickens"><br><br>
         <label for="guessAuthor">Guess the author:</label>
         <input type="text" id="guessAuthor"><br><br>
-        <input type="button" value="Check the guess" onclick="checkAuthor()"><br><br>
+        <input type="button" id="authButton" class="btn btn-primary" value="Check the guess" onclick="checkAuthor()"><br><br>
         <p id="result"></p>
     </form>
     <div>
         <img id="city" src="Goa.jpeg" width="100" height="100" onclick="selectImage()">
     </div>
     <script>
-        let good = 0;
-        let oops = 0;
+        let good =0;
+        let oops =0;
+        let count=0;
 
         function checkAuthor() {
             const secretAuthorInput = document.getElementById("secretAuthor");
@@ -32,14 +37,28 @@
             const guessAuthorValue = guessAuthorInput.value;
 
             if (secretAuthorValue === guessAuthorValue) {
+                count=0;
                 good++;
                 alert("You got it right!");
-            } else {
-                oops++;
-                alert("Sorry, that's not correct.");
-            }
-            resultElement.innerHTML = `Good: ${good}, Oops: ${oops}`;
+            } 
+            
+            else if (count<7){
+            oops=oops+1
+            count=count+1
+            alert("Sorry")
         }
+        else {
+        let authButton = document.getElementById('authButton');
+        authButton.onclick = errorMsg() ;
+        document.getElementById('authButton').disabled=true;
+        
+    }
+    if (count<7){
+        resultElement.innerHTML="good count "+good+"  oops count "+oops
+        resultElement.style.color= "#ff0000"
+
+    }
+}
         useImage = 1;
 
         function selectImage() {
@@ -60,6 +79,10 @@
                     break;
             }
         }
+        function errorMsg() {
+        alert("Sorry, ran out of guesses");
+        resultElement.innerHTML="Sorry, ran out of guesses";
+    }
 
 </script>
 </body>
